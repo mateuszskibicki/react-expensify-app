@@ -1,40 +1,159 @@
-console.log('App is running');
-// var swapi = fetch('https://swapi.co/api/people/1/').then((response) => {
-//   return response.json();
-// }).then((data) => {
-//   console.log(data);
-// });
+class IndecisionApp extends React.Component {
+  constructor(props){
+    super(props);
+    this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+    this.handleAction = this.handleAction.bind(this);
+    this.handleAddOption = this.handleAddOption.bind(this);
+    this.state = {
+      options: []
+    }
+  }
 
-// JSX - Javascript XML
-var template = (
-  <div>
-    <p id="someClass">This is JSX from app.js does this change?</p>
-    <h1>This is some info</h1>
-    <ol>
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-    </ol>
-  </div>
-);
+  handleDeleteOptions() {
+    this.setState(() => {
+      return {
+        options: []
+      };
+    });
+  }
 
-// create templateTwo var JSX expression
-//div 
-  //h1 -> name
-  //p -> age
-  //p-> location -> burnleyxdddd
-//render t2 instead of template
+  handleAction(){
+    let optionsLength = this.state.options.length;
+    let randomNumber = Math.floor(Math.random() * this.state.options.length);
+    console.log(this.state.options[randomNumber]);
+  }
+
+  handleAddOption(option) {
+    if(!option) {
+      return 'Enter valid value to add item';
+    } else if(this.state.options.indexOf(option) > -1) {
+      return 'This option already exists';
+    } else {
+
+    }
+
+    this.setState((prevState) => {
+      return {
+        options: prevState.options.concat([option])
+      };
+    });
+  }
+
+  render() {
+    const title = 'Indecision test title';
+    const subtitle = 'Subtitle xdddddd';
+
+    return (
+      <div>
+        <Header title={title} subtitle={subtitle}/>
+        <Action 
+          hasOptions={this.state.options.length > 0}
+          handleAction={this.handleAction}
+        />
+        <Options 
+          options={this.state.options}
+          handleDeleteOptions={this.handleDeleteOptions}
+        />
+        <AddOption 
+          handleAddOption={this.handleAddOption}
+        />
+      </div>
+    );
+  }
+}
+
+class Header extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>Indecision</h1>
+        <h2>{this.props.title}</h2>
+        <h3>{this.props.subtitle}</h3>
+      </div>
+    );
+  }
+}
+
+class Action extends React.Component {
+  render() {
+    return (
+      <div>
+        <button 
+          onClick={this.props.handleAction}
+          disabled={!this.props.hasOptions}
+        >
+        What should I do?
+        </button>
+      </div>
+    );
+  }
+}
+
+class Options extends React.Component {
+  render() {
+
+    const options = this.props.options;
+
+    return (
+      <div>
+        
+      {
+        this.props.options.map((option) => <Option key={option} optionText={option}/>)
+      }
+
+      <button onClick={this.props.handleDeleteOptions}>XX Remove ALL XX</button>
+
+      </div>
+    );
+  }
+}
+
+class Option extends React.Component {
+  render() {
+    return (
+      <div>
+        <div className="option">Option : {this.props.optionText} {this.props.optionText==='four' && 'hejzehola'}</div>
+      </div>
+    );
+  }
+}
+
+class AddOption extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleAddOption = this.handleAddOption.bind(this);
+    this.state = {
+      error: undefined
+    };
+  }
+
+  handleAddOption(e){
+    e.preventDefault();
+    //const inputText = document.getElementById('newOption').value;
+    const inputText = e.target.elements.option.value.trim();
+
+    const error = this.props.handleAddOption(inputText);
+    this.setState(() => {
+      return {
+        error: error
+      };
+    });
+
+  }
+
+  render() {
+    return (
+      <div>
+        {this.state.error && <p>{this.state.error}</p>}
+        <form onSubmit={this.handleAddOption}>
+          <input type="text" name="option"/>
+          <button type='submit'>SUBMIT BUTTON</button>
+        </form>
+      </div>
+    );
+  }
+}
 
 
 
-var templateTwo = (
-  <div>
-    <h1>Mateusz</h1>
-    <p>23</p>
-    <p>Burnley</p>
-  </div>
-);
-
-var appRoot = document.getElementById('app');
-
-ReactDOM.render(templateTwo, appRoot);
+ReactDOM.render(<IndecisionApp/>, document.getElementById('app'));
