@@ -45,7 +45,7 @@ export default class IndecisionApp extends React.Component {
     let optionsLength = this.state.options.length;
     let randomNumber = Math.floor(Math.random() * this.state.options.length);
     this.setState((prevState) => ({
-      selectedOption: true
+      selectedOption: this.state.options[randomNumber]
     }))
   }
 
@@ -60,13 +60,12 @@ export default class IndecisionApp extends React.Component {
       return 'Enter valid value to add item';
     } else if(this.state.options.indexOf(option) > -1) {
       return 'This option already exists';
-    } else {
-
     }
 
     this.setState((prevState) => ({
         options: prevState.options.concat([option])
     }));
+    document.querySelector('input').value = '';
   }
 
   render() {
@@ -74,24 +73,26 @@ export default class IndecisionApp extends React.Component {
     const subtitle = 'Subtitle xdddddd';
 
     return (
-      <div>
+      <div className="mainapp">
         <Header title={title} subtitle={subtitle}/>
-        <Action 
-          hasOptions={this.state.options.length > 0}
-          handleAction={this.handleAction}
-        />
-        <Options
-          options={this.state.options}
-          handleDeleteOptions={this.handleDeleteOptions}
-          handleDeleteOptionSingle={this.handleDeleteOptionSingle}
-        />
-        <AddOption 
-          handleAddOption={this.handleAddOption}
-        />
-        <OptionModal 
-          selectedOption={this.state.selectedOption}
-          hideModalEvent={this.hideModalEvent}
-        />
+        <div className="container widget widget__container">
+          <Action 
+            hasOptions={this.state.options.length > 0}
+            handleAction={this.handleAction}
+          />
+          <Options
+            options={this.state.options}
+            handleDeleteOptions={this.handleDeleteOptions}
+            handleDeleteOptionSingle={this.handleDeleteOptionSingle}
+          />
+          <AddOption 
+            handleAddOption={this.handleAddOption}
+          />
+          <OptionModal 
+            selectedOption={this.state.selectedOption}
+            hideModalEvent={this.hideModalEvent}
+          />
+        </div>
       </div>
     );
   }

@@ -1,10 +1,11 @@
 import React from 'react';
 
 const Header = (props) => (
-    <div>
-      <h1>Indecision</h1>
-      <h2>{props.title}</h2>
-      <h3>{props.subtitle}</h3>
+    <div className="header">
+      <div className="container">
+        <h1 className="header__title">Indecision</h1>
+        <h2 className="header__subtitle">{props.title}</h2>
+      </div>
     </div>
 );
 

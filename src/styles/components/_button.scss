@@ -1,0 +1,54 @@
+.big-button {
+  background: $tomato;
+  color: $off-white;
+  padding: 2rem;
+  width: 100%;
+  border: none;
+  font-size: $font-medium;
+  font-weight: 800;
+  border-bottom: .6rem solid darken($tomato, 10%);
+  margin-bottom: 5rem;
+
+  transition: .5s;
+
+  &:hover {
+    background: darken($tomato, 5%);
+    transform: scale(1.1);
+  }
+}
+
+.big-button:disabled {
+  background: darken($tomato, 10%);
+  border-bottom: .6rem solid darken($tomato, 15%);
+  opacity: .5;
+
+  &:hover {
+    background: default;
+    transform: none;
+  }
+}
+
+.button {
+  background-color: $tomato;
+  border: none;
+  border-bottom: .3rem solid darken($tomato, 10%);
+  color: $off-white;
+  font-weight: 500;
+  padding: .2rem $font-small;
+  font-size: $font-small;
+
+  transition: .5s;
+
+  &:hover {
+    background: darken($tomato, 5%);
+    transform: scale(1.1);
+  }
+}
+
+.button--link {
+  background: none;
+  border: none;
+  color: $off-white;
+  padding: .2rem;
+
+}

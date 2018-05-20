@@ -4,25 +4,11 @@ import ReactDOM from 'react-dom';
 //my app file
 import IndecisionApp from './components/IndecisionApp';
 
+//css
+import 'normalize.css/normalize.css';
+import './styles/styles.scss';
+
 ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // ------------------
 // OLD SYNTAX WITHOUT PRESETS
