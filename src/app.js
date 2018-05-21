@@ -1,40 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-//my app file
-import IndecisionApp from './components/IndecisionApp';
-
 //css
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 
-ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
-
-// ------------------
-// OLD SYNTAX WITHOUT PRESETS
-class OldSyntax {
-  constructor() {
-    this.name = "Mike";
-    this.getGreeting = this.getGreeting.bind(this);
-  }
-  getGreeting() {
-    return `Hi. My name is ${this.name}`;
-  }
-}
-const oldSyntax = new OldSyntax();
-const getGreeting = oldSyntax.getGreeting; 
-console.log(getGreeting()); //doesn't reed this.name props without binding
-
-// ------------------
-// NEW SYNTAX
-class NewSytnax {
-  name = 'Jen';
-  getGreeting = () => {
-    return `Hi. My name is ${this.name}`;
-  }
-}
-const newSytnax = new NewSytnax();
-const newGetGreeting = newSytnax.getGreeting;
-console.log(newGetGreeting()); //it work's without binds
-
+ReactDOM.render(<p>This is my boilerplate</p>, document.getElementById('app'));
 
