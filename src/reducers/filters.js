@@ -1,10 +1,12 @@
+import moment from 'moment';
+
 // Expenses Reducer
 
 const filtersReducerDefaultStore = {
   text: '',
   sortBy: 'date',
-  startDate: undefined,
-  endDate: undefined
+  startDate: moment().startOf('month'),
+  endDate: moment().endOf('month')
 };
 
 const filtersReducer = (state = filtersReducerDefaultStore, action) => {
